@@ -41,6 +41,6 @@ TIMER PRESCALER DEFINITIONS
 TIMER CONFIGURATION DEFINITIONS
 ==========================================*/
 
-#define TIMER_FCPU 16 // The MCU's clock frequency in MHz
+#define TIMER_FCPU 8 // The MCU's clock frequency in MHz
 
 #endif /* TIMER_H_ */

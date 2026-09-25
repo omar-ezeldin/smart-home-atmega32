@@ -47,10 +47,8 @@ u16 LM35_GetVoltage(u16 value);
 /**
  * @brief Converts a raw ADC result to degrees Celsius.
  *
- * @param value Raw ADC result.
- *
  * @return Temperature in degrees Celsius.
  */
-u8 LM35_GetTemperature(u16 value);
+u8 LM35_GetTemperature();
 
 #endif /* LM35_H_ */

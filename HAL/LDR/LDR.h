@@ -48,10 +48,8 @@ u16 LDR_GetVoltage(u16 value);
 /**
  * @brief Converts a raw ADC result to calibrated light intensity.
  *
- * @param value Raw ADC result.
- *
  * @return Calibrated light intensity percentage.
  */
-u8 LDR_GetIntensity(u16 value);
+u8 LDR_GetIntensity();
 
 #endif /* LDR_H_ */

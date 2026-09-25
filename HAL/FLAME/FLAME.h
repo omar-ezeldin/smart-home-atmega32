@@ -20,17 +20,21 @@ FLAME SENSOR CONFIGURATION
 #define FLAME_SENSOR_PORT PD
 #define FLAME_SENSOR_PIN  P2
 
-#define FLAME_BUZZER_PORT PD
-#define FLAME_BUZZER_PIN  P3
-
 /*==========================================
 FUNCTION PROTOTYPES
 ==========================================*/
 
 /**
- * @brief Initializes the flame sensor, buzzer and INT0.
+ * @brief Initializes the flame sensor and INT0.
  */
 void FLAME_Init();
+
+/**
+ * @brief Sets the flame detection callback.
+ *
+ * @param callbackFunctionPointer Function called when the flame state changes.
+ */
+void FLAME_SetCallback(void (*callbackFunctionPointer)(void));
 
 /**
  * @brief Gets the current flame detection state.

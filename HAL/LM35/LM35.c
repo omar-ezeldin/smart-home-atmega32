@@ -25,7 +25,8 @@ u16 LM35_GetVoltage(u16 value) {
     return (u16)(((u32)value * ADC_VOLTAGE_REF_mv) / (ADC_MAX_NO_OF_STEPS - 1));
 }
 
-u8 LM35_GetTemperature(u16 value) {
+u8 LM35_GetTemperature() {
+    u16 value = LM35_Read();
     return (u8)(LM35_GetVoltage(value) / LM35_VOLTAGE_PER_DEGREE_mv);
 }
 

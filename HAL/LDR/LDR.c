@@ -31,7 +31,8 @@ u16 LDR_GetVoltage(u16 value) {
     return (u16)(((u32)value * ADC_VOLTAGE_REF_mv) / (ADC_MAX_NO_OF_STEPS - 1));
 }
 
-u8 LDR_GetIntensity(u16 value) {
+u8 LDR_GetIntensity() {
+    u16 value = LDR_Read();
     u16 voltage = LDR_GetVoltage(value);
     u8 index;
 

@@ -116,10 +116,12 @@ last initialization leaves the same ADC setup active.
 void LDR_Init();
 u16  LDR_Read();
 u16  LDR_GetVoltage(u16 value);
-u8   LDR_GetIntensity(u16 value);
+u8   LDR_GetIntensity();
 ```
 
-`LDR_Read()` returns the raw ADC result. `LDR_GetVoltage()` converts it using:
+`LDR_Read()` returns the raw ADC result. `LDR_GetIntensity()` reads the LDR,
+converts it, and applies the calibration in one application-level call.
+`LDR_GetVoltage()` converts a raw result using:
 
 ```text
 voltage_mV = adc_value * 5000 / 1023
@@ -173,11 +175,12 @@ current implementation.
 void LM35_Init();
 u16  LM35_Read();
 u16  LM35_GetVoltage(u16 value);
-u8   LM35_GetTemperature(u16 value);
+u8   LM35_GetTemperature();
 ```
 
-The LM35 is connected to `PA1/ADC1`. The driver uses the LM35 scale of
-`10 mV/°C`:
+The LM35 is connected to `PA1/ADC1`. `LM35_GetTemperature()` reads the raw ADC
+value and converts it in one application-level call. The driver uses the LM35
+scale of `10 mV/°C`:
 
 ```text
 temperature_C = voltage_mV / 10
@@ -229,16 +232,17 @@ Flame:    HIGH
 `FLAME_Init()`:
 
 1. Configures `PD2` as an input.
-2. Configures `PD3` as a buzzer-driver output.
-3. Samples the initial flame state.
-4. Registers the INT0 callback.
-5. Configures INT0 for logical changes.
-6. Enables INT0 and global interrupts.
+2. Registers the INT0 callback.
+3. Configures INT0 for logical changes.
+4. Enables INT0 and global interrupts.
+5. Samples the initial flame state.
 
-The ISR callback reads `PD2`, updates the volatile flame state, and writes the
-same state to `PD3`. The callback does not access the LCD. `main.c` observes
-`FLAME_IsDetected()` and changes the LCD between the normal screen and
-`Critical alert!`.
+The flame driver is detector-only. Its INT0 callback reads `PD2` and invokes
+the application callback registered through `FLAME_SetCallback()`, passing
+`HIGH` for flame detected and `LOW` for no flame. The callback is implemented
+in `main.c`, where it controls the `PD3` buzzer output and updates the LCD
+alert text. The main loop does not read the flame sensor or call a flame-state
+getter.
 
 The buzzer output is a transistor-driver control signal, not a direct
 microcontroller power connection. For the documented BC547 low-side circuit:
