@@ -101,7 +101,7 @@ void LCD_Init() {
 
     // LCD initialization
     LCD_Command(LCD_CMD_FUNCTION_SET(1, 1, 1));
-    LCD_Command(LCD_CMD_DISPLAY(1, 1, 1));
+    LCD_Command(LCD_CMD_DISPLAY(1, 0, 0));
     LCD_Clear();
     LCD_Command(LCD_CMD_ENTRY_MODE(1, 0));
 }
