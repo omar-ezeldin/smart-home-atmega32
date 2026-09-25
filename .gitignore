@@ -1,0 +1,18 @@
+# Reference material
+reference/
+
+# Copilot and repository-local assistant instructions
+.github/
+
+# Generated build files and artifacts
+_build/
+out/
+cmake/
+
+# IDE and editor metadata
+.vscode/
+
+# Temporary files
+*.swp
+*.swo
+*~
