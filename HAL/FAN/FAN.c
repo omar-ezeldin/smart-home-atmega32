@@ -10,7 +10,7 @@
 #define FAN_C_
 
 #include "HAL/FAN.h"
-#include "MCAL/TIMER/TIMER0/TIMER0.h"
+#include "MCAL/TIMER.h"
 
 static u8 fanOn = LOW;
 
