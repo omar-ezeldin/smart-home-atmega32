@@ -17,8 +17,8 @@ The complete source and hardware reference is in
 
 ## Build
 
-The project uses the generated MPLAB/CMake configuration. From the repository
-root:
+The project uses CMake and the AVR-GCC toolchain. Install CMake, Ninja, and
+the AVR-GCC tools first. From the repository root:
 
 ```sh
 cmake --preset Smart_Home_default_conf \

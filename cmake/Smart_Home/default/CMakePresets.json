@@ -1,0 +1,17 @@
+{
+    "version": 6,
+    "configurePresets": [
+        {
+            "name": "Smart_Home_default_conf",
+            "binaryDir": "${sourceDir}/../../../_build/Smart_Home/default",
+            "generator": "Ninja",
+            "toolchainFile": "${sourceDir}/toolchain.cmake",
+            "cacheVariables": {
+                "CMAKE_EXPORT_COMPILE_COMMANDS": {
+                    "type": "BOOL",
+                    "value": "ON"
+                }
+            }
+        }
+    ]
+}

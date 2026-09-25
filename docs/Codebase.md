@@ -58,8 +58,10 @@ The one-level headers such as `HAL/LDR.h` and `MCAL/ADC.h` are import headers.
 They include the implementation-level driver header in the corresponding
 subdirectory and preserve the project's include convention.
 
-`_build/`, `out/`, and generated files under `cmake/` are build artifacts or
-generated project files. They are not application source.
+`_build/`, `out/`, and generated files under
+`cmake/Smart_Home/default/.generated/` are build artifacts. The tracked CMake
+preset and toolchain files under `cmake/Smart_Home/default/` are the portable
+build configuration.
 
 ## 3. Hardware and pin map
 
@@ -313,7 +315,7 @@ driver's interrupt-maintained state.
 
 ## 12. Build and outputs
 
-The generated project uses an AVR-GCC toolchain and targets `ATmega32`.
+The tracked CMake project uses an AVR-GCC toolchain and targets `ATmega32`.
 
 From the repository root:
 
@@ -335,9 +337,9 @@ The current build has been verified to compile and link for the ATmega32.
 
 ## 13. Clock configuration note
 
-The project requirements state a 16 MHz system frequency, while the current
-build configuration defines `F_CPU=8000000UL` and `main.c` also declares 8 MHz.
-The Timer0 support header assumes 16 MHz for its timing calculations.
+The project requirements state a 16 MHz system frequency. `main.c` and the
+Timer0 support header use 16 MHz, while the LCD source is currently compiled
+with `F_CPU=8000000UL` by the CMake configuration.
 
 This inconsistency must match the actual Proteus crystal/clock configuration
 before final hardware or timing claims are made. It affects:

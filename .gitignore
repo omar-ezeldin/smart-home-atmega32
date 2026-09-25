@@ -7,7 +7,7 @@ reference/
 # Generated build files and artifacts
 _build/
 out/
-cmake/
+cmake/Smart_Home/default/.generated/
 
 # IDE and editor metadata
 .vscode/
